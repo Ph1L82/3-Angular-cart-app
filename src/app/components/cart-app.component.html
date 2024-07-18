@@ -1,26 +1,30 @@
-<h2>Catalogo de productos App!</h2>
-<button class="btn btn-info btn-sm" (click)="toggleCart()">
-  cart ({{ total }})
-</button>
-<div class="row">
-  <div [className]="showCart ? 'col-9' : 'col'">
-    <catalog [products]="products" (productsEventEmitter)="onAddCart($event)" />
-  </div>
-  @if (showCart) {
+<navbar [items]="items" (toggleCartEventEmitter)="toggleCart()" />
+<div class="container">
+  <h2>Catalogo de productos App!</h2>
 
-  <div class="col-3">
-    @if (items.length>0) {
-    <button class="btn btn-danger btn-sm float-end" (click)="toggleCart()">
-      X
-    </button>
-    <cart
-      [items]="items"
-      [total]="total"
-      (idProductEventEmitter)="onDeleteCart($event)"
-    />
-    } @else {
-    <div class="alert alert-warning">No hay elementos en el carro!</div>
+  <div class="row">
+    <div [className]="showCart ? 'col-9' : 'col'">
+      <catalog
+        [products]="products"
+        (productsEventEmitter)="onAddCart($event)"
+      />
+    </div>
+    @if (showCart) {
+
+    <div class="col-3">
+      @if (items.length>0) {
+      <button class="btn btn-danger btn-sm float-end" (click)="toggleCart()">
+        X
+      </button>
+      <cart
+        [items]="items"
+        [total]="total"
+        (idProductEventEmitter)="onDeleteCart($event)"
+      />
+      } @else {
+      <div class="alert alert-warning">No hay elementos en el carro!</div>
+      }
+    </div>
     }
   </div>
-  }
 </div>

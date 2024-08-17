@@ -4,18 +4,11 @@
 
   <div class="row">
     <div [className]="showCart ? 'col-9' : 'col'">
-      <catalog
-        [products]="products"
-        (productsEventEmitter)="onAddCart($event)"
-      />
+      <catalog [products]="products" (productsEventEmitter)="onAddCart($event)" />
     </div>
     @if (showCart) {
-    <cart-modal
-      [items]="items"
-      [total]="total"
-      (idProductEventEmitter)="onDeleteCart($event)"
-      (toggleCartEventEmitter)="toggleCart()"
-    />
+    <cart-modal [items]="items" (idProductEventEmitter)="onDeleteCart($event)"
+      (toggleCartEventEmitter)="toggleCart()" />
     }
   </div>
 </div>
